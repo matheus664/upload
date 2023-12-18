@@ -1,0 +1,51 @@
+{% extends 'base.html'%}
+
+{% block conteudo%}
+
+<br>
+<h2 align="left" class = 'display-6'>Uploads</h2>
+    <hr>
+    <p>
+        {% with messages = get_flashed_messages()%}
+        {% if messages %}
+        <ul class = "alert alert-success">
+        {% for message in messages%}
+            <li>{{message}}</li>
+        {%endfor%}
+    
+        </ul>
+    
+        {% endif %}
+    
+        {% endwith%}
+    </p>
+        {% if filename%}
+            <div>
+                <img src="{{url_for('display_image', filename = filename)}}" alt="">
+    
+            </div>
+        {% endif %}
+    <br>
+    
+    <form method="post" enctype="multipart/form-data" action="{{url_for('upload_image')}}" class="form-control">
+        <dl>
+            <p>
+                <input type="file" name="file">
+            </p>
+        </dl>
+        <p>
+            <input type="submit" value="Enviar" class="btn btn-dark">
+        </p>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock conteudo%}
